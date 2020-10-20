@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+       <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <title>Random Quote Generator</title>
+     <script src="quotes.js"></script>
+    <script type="text/javascript">
+      // const QUOTES = [
+      // {
+      //   quote: 'No pains, no gains!',
+      //   author: 'Unknown'
+      // },
+      // {
+      //   quote: 'Those who dare to fail miserably can achieve greatly',
+      //   author: 'John F. Kennedy'
+      //   },
+      // {
+      //   quote: 'It is hard to fail, but it is worse never to have tried to succeed',
+      //   author: 'Theodore Roosevelt'
+      // }
+      // ];
+       window.onload = init;
+       function init(){
+         handleQuote();
+       }
+       function handleQuote() {
+          let randomNumber = Math.floor(Math.random() * (QUOTES.length));
+          let twit = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22";
+          // Add the Quote
+          let quoteApiFormat = QUOTES[randomNumber].quote.replace(/ /g,"%20");
+          twit+=quoteApiFormat;
+          // Add the author
+          let authorApiFormat = QUOTES[randomNumber].author.replace(/ /g,"%20");
+          twit+= "-" + authorApiFormat;
+          document.getElementById("tweet-quote").href= twit;
+          document.getElementById("text").innerText=QUOTES[randomNumber].quote;
+          document.getElementById("author").innerText=QUOTES[randomNumber].author;
+       }
+    </script>
+
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row py-5">
+        <div class="col-md-6 offset-md-3">
+          <wrapper id="quote-box">
+           <div class="card bg-dark text-white">
+             <div class="card-header text-center">
+               Random Quote Generator
+             </div>
+             <div class="card-body text-center">
+                <h3 class="card-title"><i class="fa fa-quote-left"> </i><span id="text"></span></h3>
+                <p class="card-text"><div id="author"></div></p>
+
+                  <button type="button" id="new-quote" class="btn btn-success btn-lg float-left" onclick="handleQuote();">New Quote</button>
+                  <a href="#" id="tweet-quote" class="btn btn-primary btn-lg float-right" target="_blank"><i class="fa fa-twitter"></i> Tweet Quote</a>
+
+              </div>
+           </div>
+         </wrapper>
+          </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
